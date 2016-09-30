@@ -1,0 +1,42 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block content %}
+
+<style>
+  ul {
+	padding: 0;
+  }
+  li {
+	list-style-type: none;
+  }
+  th {
+    width: 70%;
+  }
+  label {
+	font-style: normal;
+    font-weight: normal;
+    font-size: smaller;
+  }
+  tr {
+	border-top: #ccc 2px solid;
+  }
+  input {
+	margin: 20px 0 20px;
+  }
+  ul.errorlist li {
+	color: red;
+	font-weight: bold;
+  }
+</style>
+
+<p><img src="{% static "img/comodo_secure_100x85_white.png" %}"/></p>
+<p>This application form uses industry standard SSL to ensure the complete privacy of your information.</p>
+<h3>Insurance Survey</h3>
+<form id="insurance" action="/insurance/" method="post">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

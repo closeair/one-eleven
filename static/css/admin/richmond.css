@@ -1,0 +1,9 @@
+div#content h1 {
+	display: none;
+}
+.field-in_favor {
+	background-color: #cfc
+}
+.field-against {
+	background-color: #fcc
+}

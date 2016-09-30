@@ -1,0 +1,15 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block content %}
+
+<p><img src="{% static "img/comodo_secure_100x85_white.png" %}"/></p>
+<p>This application form uses industry standard SSL to ensure the complete privacy of your information and documents.</p>
+<h3>File</h3>
+<form id="member" action="/upload/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block content %}
+
+<h3>Welcome</h3>
+<p>Please note that you will need a scanned copy of your driver's license report in order to fill out this application. If you have not acquired this report, please do so first.</p>
+<p><img src="{% static "img/comodo_secure_100x85_white.png" %}"/></p>
+<p>This application form uses industry standard SSL to ensure the complete privacy of your information and documents.</p>
+<h3>Application</h3>
+<form id="member" action="/application/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

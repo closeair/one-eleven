@@ -1,0 +1,33 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% block content %}
+
+<style>
+  ul.errorlist li {
+	color: red;
+	font-weight: bold;
+  }
+  li {
+	background-color: red;
+    padding: 20px;
+    color: white;
+    font-size: large;
+  }
+  li:first-child {
+	background-color: green;	
+  }
+  p {
+	margin: 20px;
+  }
+</style>
+
+<h3>Vote</h3>
+<p>{{ motion.body }}</p>
+<form id="vote" action="/vote/{{ motion.pk }}/" method="post">
+    {% csrf_token %}
+    <table>{{ form.as_table }}</table>
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock content %}

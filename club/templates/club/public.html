@@ -1,0 +1,30 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<style>
+  table {
+	width: 100%
+  }
+  tr.odd {
+	background-color: #eee;
+  }
+  tr.even {
+	background-color: #fff;	
+  }
+  td {
+	font-size: 14pt;
+	padding: 10px;
+  }
+</style>
+
+<h3>Documents</h3>
+<table>
+  {% for d in public_documents %}
+    <tr class="{% cycle 'odd' 'even' %}">
+      <td><a href="{{d.uploaded_file.url}}">{{d.name}}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}
