@@ -73,7 +73,6 @@ class MembershipApplication(models.Model):
   city = models.CharField(max_length=20, blank=False, null=True)
   state_abbreviation = models.CharField(max_length=2, blank=False, null=True)
   zipcode = models.CharField(max_length=9, blank=False, null=True)
-  phone = models.CharField(max_length=11, blank=False, null=True)
   criminal_convictions = models.TextField(blank=True, null=True)
   united_states_citizen = models.BooleanField(blank=False, default=False)
   if_no_where = models.CharField(max_length=100, blank=True, null=True)
@@ -94,8 +93,8 @@ class MembershipApplication(models.Model):
   inconsistencies = models.TextField(null=True)
   notes = models.TextField(null=True)
   approved = models.BooleanField(blank=True, default=False)
-
   submitted_at = models.DateField(default=datetime.now, blank=True)
+
   def __unicode__(self):
     return self.name
 
@@ -139,4 +138,3 @@ class Bylaw(models.Model):
   article_designator = models.IntegerField(blank=False)
   article_title = models.CharField(max_length=255, blank=False)
   body = MarkdownField()
-
