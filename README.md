@@ -11,7 +11,38 @@ Fill in your specific details and migrate:
 
     $ ./manage.py migrate
 
+Now create a default superuser:
+
+    $ ./manage.py createsuperuser
+
+And start:
+
+    $ ./manage.py runserver
+
+The first time you start the application you will brought through a configuration form that will gather some details regarding your organization. This should be fairly self explanatory. The resulting information gathered will be the basis of the non-logged-in home page. The admin UI is more or less the default Django admin and should be intuitive. That said, for clarity is a brief overview of available options.
+
+### Types of Users
+
+* Public, non-logged-in person able to see the introduction page for your club and submitted a membership application.
+* Member, able to log in but limited permissions to schedule, vote, upload, etc.
+* Staff, same as member but able to access the admin pages, see membership applications, etc.
+
+### Current Features
+
+* Member management
+* Insurance Surveys
+* Aircraft Management and Scheduling
+* Invoicing with optional, limited payment gateway for online payments.
+* Ability to create Motions and Vote on them
+* Ability to write Custom Surveys to request input from members.
+* Public / Internal document support
+* Define and manage Bylaws
+* Support for meeting minutes and attendance.
+
+
 # testing
+
+If you plan to develop the code base and wish to use TDD, run the test suite with the following:
 
     $ ./manage.py test
 
