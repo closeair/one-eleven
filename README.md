@@ -40,13 +40,13 @@ The first time you start the application you will brought through a configuratio
 * Support for meeting minutes and attendance.
 
 
-# testing
+# Testing
 
 If you plan to develop the code base and wish to use TDD, run the test suite with the following:
 
     $ ./manage.py test
 
-# What is his?
+# What is this?
 
 The sundowner-fc code base was developed as part of the preparation for the Sundowner Flight Club as well as extracted from a solution developed for the Richmond Pilots Corporation, a flight club originally based at Miller Field in Staten Island but later moved to KLDJ when Miller Field was closed.
 
