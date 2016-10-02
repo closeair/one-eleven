@@ -1,4 +1,7 @@
 # sundowners-fc
+
+<img src="https://raw.githubusercontent.com/closeair/sundowners-fc/dev/static/img/logo.png" width="100"/>
+
 Suite for the day to day operation of the Sundowners Flight Club, et al.
 
 ## Getting Running
