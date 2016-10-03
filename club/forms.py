@@ -77,6 +77,11 @@ class VoteForm(forms.ModelForm):
     fields = ['yay',]
 
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=255, required=True)
+    password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+
 class InsuranceSurveyForm(forms.ModelForm):
   truthful = forms.BooleanField(required=True, label="The information I have supplied to Richmond Pilots on this form is true and correct and no material information has been withheld.")
   class Meta:

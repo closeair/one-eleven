@@ -1,0 +1,13 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+{% if form.non_field_errors %}
+    <ul class='form-errors'>
+        {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock content %}

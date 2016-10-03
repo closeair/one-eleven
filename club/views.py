@@ -1,9 +1,10 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import redirect
 from .models import Motion, PublicDocument
 from .forms import MembershipApplicationForm, InsuranceSurveyForm, VoteForm
 
@@ -29,14 +30,23 @@ def application(request):
           'New Member Application',
           'There is a new member application for %s' % form.cleaned_data.get('name'),
           settings.DONOTREPLY,
-		  board_emails, 
+		  board_emails,
 		  fail_silently=False)
       return HttpResponseRedirect('/thanks/')
   else:
     form = MembershipApplicationForm()
   return render(request, 'club/application.html', {'form': form})
 
-@login_required(login_url='/admin/login/')
+def login(request):
+   form = LoginForm(request.POST or None)
+    if request.POST and form.is_valid():
+        user = form.login(request)
+        if user:
+            login(request, user)
+            return redirect(reverse('panel'))
+    return render(request, 'club/login.html', {'form': form })
+
+@login_required(login_url='/login/')
 def insurance(request):
   if request.method == 'POST':
     form = InsuranceSurveyForm(request.POST)
@@ -49,7 +59,12 @@ def insurance(request):
     form = InsuranceSurveyForm()
   return render(request, 'club/insurance.html', {'form': form})
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/login/')
+def panel(request):
+  user = User.objects.get(username='john')
+  return render(request, 'club/panel.html', {'user': user})
+
+@login_required(login_url='/login/')
 def vote(request, motion):
   motion = get_object_or_404(Motion, pk=motion)
   if request.method == 'POST':

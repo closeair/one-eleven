@@ -7,6 +7,60 @@ from .models import Motion
 import os
 
 
+class ClubMemberLoginTests(TestCase):
+    def setUp(self):
+        user = User.objects.create_user('omar', 'omar@ace.org', 'omaramente')
+
+    def test_login_required(self):
+        response = self.client.get(reverse('panel'))
+        self.assertRedirects(response, '/login/?next=/panel/')
+
+    def test_panel_render_when_logged_in(self):
+        self.client.login(username='omar', password='omaramente')
+        response = self.client.get(reverse('panel'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Panel")
+        self.assertContains(response, "omar")
+
+    def test_init_valid_with_entry(self):
+        data = {
+            'username': 'omar',
+            'password': 'omaramente',
+        }
+        form = LoginForm(data)
+        self.assertTrue(form.is_valid())
+
+    def test_init_invalid_username(self):
+        data = {
+            'username': 'omar',
+            'password': 'wrong',
+        }
+        form = LoginForm({data})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors, {
+            'username': ['Username is incorrect.'],
+        })
+
+    def test_init_invalid_password(self):
+        data = {
+            'username': 'ramo',
+            'password': 'omaramente',
+        }
+        form = LoginForm({data})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors, {
+            'password': ['Password is incorrect.'],
+        })
+
+    def test_init_invalid_username_and_password(self):
+        form = LoginForm({})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors, {
+            'username': ['Username is incorrect.'],
+            'password': ['Password is incorrect.'],
+        })
+
+
 class MembershipApplicationViewTests(TestCase):
     def test_membership_application_form_render(self):
         response = self.client.get(reverse('application'))
@@ -140,7 +194,7 @@ class VoteViewTests(TestCase):
 
     def test_login_required(self):
         response = self.client.get(reverse('vote', kwargs={'motion': '1'}))
-        self.assertRedirects(response, '/admin/login/?next=/vote/1/')
+        self.assertRedirects(response, '/login/?next=/vote/1/')
 
     def test_vote_form_render_when_logged_in(self):
         self.client.login(username='omar', password='omaramente')
