@@ -1,6 +1,9 @@
 from django.contrib.admin.widgets import AdminFileWidget
+from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from django import forms
 from django.forms import extras
+from django.core.exceptions import ValidationError
 from .models import MembershipApplication, InsuranceSurvey, Vote
 
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
@@ -78,8 +81,27 @@ class VoteForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=255, required=True)
-    password = forms.CharField(widget=forms.PasswordInput, required=True)
+  username = forms.CharField(max_length=255, required=True)
+  password = forms.CharField(widget=forms.PasswordInput, required=True)
+
+  def __init__(self, login={}, *args, **kwargs):
+    if 'username' not in login or 'password' not in login:
+        return super(LoginForm, self).__init__(*args, **kwargs)
+
+    super(LoginForm, self).__init__(login, *args, **kwargs)
+
+    if not self.is_valid():
+        return
+
+    username = login['username']
+    password = login['password']
+
+    if not User.objects.filter(username=username).exists():
+      self.add_error('username', 'Username is incorrect.')
+
+    self.user = authenticate( username=username, password=password)
+    if not self.user:
+      self.add_error('password', 'Password is incorrect.')
 
 
 class InsuranceSurveyForm(forms.ModelForm):

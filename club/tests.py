@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth.models import User
-from .forms import MembershipApplicationForm, VoteForm, InsuranceSurveyForm
+from .forms import MembershipApplicationForm, VoteForm, InsuranceSurveyForm, LoginForm
 from .models import Motion
 import os
 
@@ -27,36 +27,39 @@ class ClubMemberLoginTests(TestCase):
             'username': 'omar',
             'password': 'omaramente',
         }
-        form = LoginForm(data)
+        form = LoginForm(data)  # technically this takes a request..
         self.assertTrue(form.is_valid())
 
-    def test_init_invalid_username(self):
+    def test_init_missing_username(self):
         data = {
-            'username': 'omar',
-            'password': 'wrong',
+            'username': '',
+            'password': 'omaramente',
         }
-        form = LoginForm({data})
+        form = LoginForm(data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors, {
-            'username': ['Username is incorrect.'],
+            'username': ['This field is required.'],
+        })
+
+    def test_init_missing_password(self):
+        data = {
+            'username': 'omar',
+            'password': '',
+        }
+        form = LoginForm(data)
+        self.assertFalse(form.is_valid())
+        self.assertEqual(form.errors, {
+            'password': ['This field is required.'],
         })
 
     def test_init_invalid_password(self):
         data = {
-            'username': 'ramo',
-            'password': 'omaramente',
+            'username': 'omar',
+            'password': 'completelywrong',
         }
-        form = LoginForm({data})
+        form = LoginForm(data)
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors, {
-            'password': ['Password is incorrect.'],
-        })
-
-    def test_init_invalid_username_and_password(self):
-        form = LoginForm({})
-        self.assertFalse(form.is_valid())
-        self.assertEqual(form.errors, {
-            'username': ['Username is incorrect.'],
             'password': ['Password is incorrect.'],
         })
 

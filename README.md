@@ -22,7 +22,7 @@ And start:
 
     $ ./manage.py runserver
 
-The first time you start the application you will brought through a configuration form that will gather some details regarding your organization. This should be fairly self explanatory. The resulting information gathered will be the basis of the non-logged-in home page. The admin UI is more or less the default Django admin and should be intuitive. That said, for clarity is a brief overview of available options.
+The first time you start the application you will brought through a configuration form that will gather some details regarding your organization. This should be fairly self explanatory. The resulting information gathered will be the basis of the non-logged-in home page. The admin UI is more or less the default Django admin and should be intuitive. That said, for the sake of clarity this is a brief overview of available options.
 
 ### Types of Users
 
@@ -51,7 +51,7 @@ If you plan to develop the code base and wish to use TDD, run the test suite wit
 
 ## What is this?
 
-The sundowner-fc code base was developed as part of the preparation for the Sundowners Flight Club as well as extracted from a solution developed for the Richmond Pilots Corporation, a flight club originally based at Miller Field in Staten Island but later moved to KLDJ when Miller Field was closed.
+The sundowners-fc code base was developed as part of the preparation for the Sundowners Flight Club as well as extracted from a solution developed for the Richmond Pilots Corporation, a flight club originally based at Miller Field in Staten Island but later moved to KLDJ when Miller Field was closed.
 
 It leverages the Django Framework to provide mostly the day to day operations of a flight club or school. Specifically, it provides member management, scheduling and management of aircraft as well as invoicing, etc.
 
