@@ -4,12 +4,6 @@ from django_markdown.admin import AdminMarkdownWidget
 from club.models import *
 
 
-class BylawAdmin(admin.ModelAdmin):
-  list_display = ('article_title', 'article_designator')
-  ordering = ('article_designator',)
-  search_fields = ['body',]
-
-
 class MinutesAdmin(admin.ModelAdmin):
   ordering = ('-minutes_date',)
   search_fields = ['minutes_text',]

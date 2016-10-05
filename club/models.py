@@ -132,9 +132,3 @@ class SurveyResponse(models.Model):
   member = models.ForeignKey(User, null=True)
   approve = models.BooleanField(blank=True, default=False)
   detail = models.CharField(max_length=2000, blank=True, default=False)
-
-
-class Bylaw(models.Model):
-  article_designator = models.IntegerField(blank=False)
-  article_title = models.CharField(max_length=255, blank=False)
-  body = MarkdownField()

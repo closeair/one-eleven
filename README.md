@@ -39,7 +39,6 @@ The first time you start the application you will brought through a configuratio
 * Ability to create Motions and Vote on them
 * Ability to write Custom Surveys to request input from members.
 * Public / Internal document support
-* Define and manage Bylaws
 * Support for meeting minutes and attendance.
 
 
