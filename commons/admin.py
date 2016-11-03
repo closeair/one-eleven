@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from commons.models import Pilot, Document
+from commons.models import Pilot, Document, Aircraft, AirworthinessDirective
 
 
 class PilotInline(admin.StackedInline):
@@ -25,6 +25,21 @@ class DocumentAdmin(admin.ModelAdmin):
         obj.save()
 
 
+class AirworthinessDirectiveInline(admin.StackedInline):
+    model = AirworthinessDirective
+    extra = 0
+
+
+class AircraftAdmin(admin.ModelAdmin):
+    list_display = ( 'n_number', 'image_thumb',)
+    inlines = (AirworthinessDirectiveInline, )
+    fields = (
+        'n_number', 'model', 'location_identifier', 'equipment', 
+        'color', 'true_air_speed_knots', 'hp', 'useful_load',
+        'price_per_hour_usd', 'misc_info', 'avatar', )
+    readonly_fields = ('image_thumb',)
+
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
 admin.site.register(Document, DocumentAdmin)
+admin.site.register(Aircraft, AircraftAdmin)
