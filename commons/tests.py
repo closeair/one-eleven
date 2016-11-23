@@ -40,6 +40,5 @@ class CommonsUploadedViewTests(TestCase):
     def test_uploaded_view(self):
         document = Document(name='example', uploaded_file="example.jpg")
         response = self.client.get(reverse('uploaded'))
-        #import pdb; pdb.set_trace()
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "successfully uploaded")
