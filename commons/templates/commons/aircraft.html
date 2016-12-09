@@ -1,0 +1,31 @@
+{% extends "club/base.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<style>
+  table {
+	width: 100%
+  }
+  tr.odd {
+	background-color: #eee;
+  }
+  tr.even {
+	background-color: #fff;
+  }
+  td {
+	font-size: 14pt;
+	padding: 10px;
+  }
+</style>
+
+<h3>Documents</h3>
+<table>
+  {% for a in fleet %}
+    <tr class="{% cycle 'odd' 'even' %}">
+      <td>{{a.n_number}}</td>
+      <td><img src="{{ a.avatar.url }}" width="300px"></p>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock content %}

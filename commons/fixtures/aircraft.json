@@ -1,0 +1,36 @@
+[
+{
+    "model": "commons.aircraft",
+    "pk": 1,
+    "fields": {
+        "avatar": "aircraft/N5272Rnew.jpg",
+        "n_number": "N5272R",
+        "model": "N",
+        "location_identifier": "LDJ",
+        "equipment": "400W GPS",
+        "color": "Blue / White",
+        "true_air_speed_knots": "110",
+        "hp": 160,
+        "useful_load": 32,
+        "price_per_hour_usd": 100,
+        "misc_info": "asdf"
+    }
+},
+{
+    "model": "commons.aircraft",
+    "pk": 2,
+    "fields": {
+        "avatar": "aircraft/n38pd.jpg",
+        "n_number": "N38PD",
+        "model": "Cessna 172S",
+        "location_identifier": "LDJ",
+        "equipment": "400W GPS",
+        "color": "White",
+        "true_air_speed_knots": "115",
+        "hp": 180,
+        "useful_load": 840,
+        "price_per_hour_usd": 125,
+        "misc_info": "Fun plane"
+    }
+}
+]

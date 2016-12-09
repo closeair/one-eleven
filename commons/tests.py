@@ -42,3 +42,11 @@ class CommonsUploadedViewTests(TestCase):
         response = self.client.get(reverse('uploaded'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "successfully uploaded")
+
+
+class AircraftFleetViewTests(TestCase):
+    fixtures = ['aircraft']
+    def test_public_display_of_fleet(self):
+        response = self.client.get(reverse('fleet'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "N5272R")

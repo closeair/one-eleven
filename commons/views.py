@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import DocumentForm
+from .models import Aircraft
 
 @login_required(login_url='/admin/login/')
 def upload(request):
@@ -18,4 +19,7 @@ def upload(request):
 
 def uploaded(request):
   return render(request, 'commons/uploaded.html')
-	
+
+def fleet(request):
+  fleet = Aircraft.objects.all()
+  return render(request, 'commons/aircraft.html', {'fleet': fleet})
