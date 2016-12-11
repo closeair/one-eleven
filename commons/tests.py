@@ -50,3 +50,48 @@ class AircraftFleetViewTests(TestCase):
         response = self.client.get(reverse('fleet'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "N5272R")
+
+class AircraftScheduleTests(TestCase):
+    fixtures = ['aircraft']
+    def test_view_of_schedule_form(self):
+        self.assertTrue(False)
+
+    def test_schedule_of_aircraft(self):
+        self.assertTrue(False)
+
+    def test_reschedule_of_aircraft(self):
+        self.assertTrue(False)
+
+    def test_delete_schedule_of_aircraft(self):
+        self.assertTrue(False)
+
+    def test_schedule_of_aircraft_by_staff(self):
+        self.assertTrue(False)
+
+    def test_reschedule_of_aircraft_by_staff(self):
+        self.assertTrue(False)
+
+    def test_delete_schedule_of_aircraft_by_staff(self):
+        self.assertTrue(False)
+
+class AircraftCalendarDisplayTests(TestCase):
+    fixtures = ['aircraft', 'scheduling']
+    def test_view_of_weekly_calendar(self):
+        self.assertTrue(False)
+
+    def test_view_schedule_of_aircraft_on_weekly_calendar(self):
+        self.assertTrue(False)
+
+class AircraftFlightTests(TestCase):
+    fixtures = ['aircraft', 'scheduling', 'flight']
+    def test_view_of_flight_form(self):
+        self.assertTrue(False)
+
+    def test_log_flight_of_aircraft(self):
+        self.assertTrue(False)
+
+    def test_log_flight_of_aircraft_by_staff(self):
+        self.assertTrue(False)
+
+    def test_flight_of_aircraft_creates_invoice_item(self):
+        self.assertTrue(False)

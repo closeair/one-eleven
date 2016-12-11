@@ -75,5 +75,7 @@ class Flight(models.Model):
   aircraft = models.ForeignKey(Aircraft)
   scheduling = models.ForeignKey(Scheduling)
   gallons_at_start = models.IntegerField(null=True)
+  starting_tach = models.FloatField(null=True) # prefilled
+  starting_hobbs = models.FloatField(null=True)
   ending_tach = models.FloatField(null=True)
   ending_hobbs = models.FloatField(null=True)
