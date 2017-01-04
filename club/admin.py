@@ -14,20 +14,12 @@ class InsuranceSurveyAdmin(admin.ModelAdmin):
     readonly_fields = ('submitted_at', 'submitted_by', 'medical', 'medical_expiration', 'bfr', 'bfr_expiration', 'claims', 'drivers_license', 'felonies_misdemeanors', 'insurance_history', 'truthful', 'printed_name',)
 
 
-class SurveyQuestionInline(admin.TabularInline):
-    model = SurveyQuestion
-    extra = 1
-
-
 class SurveyResponseInline(admin.TabularInline):
     model = SurveyResponse
-    exclude = ('question',)
-    readonly_fields = ('member', 'approve', 'detail',)
 
 
 class SurveyAdmin(admin.ModelAdmin):
     inlines = [
-        SurveyQuestionInline,
         SurveyResponseInline,
     ]
 

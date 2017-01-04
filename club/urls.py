@@ -12,5 +12,6 @@ urlpatterns = [
   url(r'^vote/(?P<motion>\d+)/$', views.vote, name='vote'),
   url(r'^complete/$', views.complete, name='complete'),
   url(r'^login/$', views.login, name='login'),
+  url(r'^survey/(?P<survey>\d+)/$', views.survey, name='survey'),
   url(r'^panel/$', views.panel, name='panel'),
 ]

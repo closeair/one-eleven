@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.forms import extras
 from django.core.exceptions import ValidationError
-from .models import MembershipApplication, InsuranceSurvey, Vote
+from .models import MembershipApplication, InsuranceSurvey, Vote, SurveyResponse
 
 BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
 
@@ -119,7 +119,7 @@ class InsuranceSurveyForm(forms.ModelForm):
       'insurance_history': forms.RadioSelect,
     }
     labels = {
-      'medical': "Do have a current medical certificate?",
+      'medical': "Do you have a current medical certificate?",
       'medical_expiration': "If so, when does it expire?",
       'bfr': "Do have a current BFR?",
       'bfr_expiration': "If so, when does it expire?",
@@ -131,3 +131,14 @@ class InsuranceSurveyForm(forms.ModelForm):
       'printed_name': "Print your full name for the record:",
     }
     fields = ['medical', 'medical_expiration', 'bfr', 'bfr_expiration', 'claims', 'drivers_license', 'felonies_misdemeanors', 'insurance_history', 'truthful', 'printed_name',]
+
+class SurveyResponseForm(forms.ModelForm):
+  class Meta:
+    model = SurveyResponse
+    fields = ['detail']
+    labels = {
+      'detail': "",
+      }
+    widgets = {
+      'detail': forms.Textarea()
+      }

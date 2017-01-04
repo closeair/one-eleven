@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as auth_login
 from django.urls import reverse
 from django.shortcuts import redirect
-from .models import Motion, PublicDocument
-from .forms import MembershipApplicationForm, InsuranceSurveyForm, VoteForm, LoginForm
+from .models import Motion, PublicDocument, Survey
+from .forms import MembershipApplicationForm, InsuranceSurveyForm, VoteForm, LoginForm, SurveyResponseForm
 
 
 def index(request):
@@ -73,3 +73,18 @@ def vote(request, motion):
 
 def complete(request):
   return render(request, 'club/complete.html')
+
+@login_required(login_url='/admin/login/')
+def survey(request, survey):
+  survey = get_object_or_404(Survey, pk=survey)
+  if request.method == 'POST':
+    form = SurveyResponseForm(request.POST, initial={'survey': survey})
+    if form.is_valid():
+      document = form.save(commit=False)
+      document.member = request.user
+      document.survey = survey
+      document.save()
+      return HttpResponseRedirect('/complete/')
+  else:
+    form = SurveyResponseForm(initial={'detail': ''})
+  return render(request, 'club/survey.html', {'form': form, 'survey': survey})

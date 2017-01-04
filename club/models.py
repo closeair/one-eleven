@@ -118,17 +118,11 @@ class InsuranceSurvey(models.Model):
 
 class Survey(models.Model):
   made_by = models.ForeignKey(User, null=True)
-
-
-class SurveyQuestion(models.Model):
-  survey = models.ForeignKey(Survey)
-  question = models.CharField(max_length=2000, blank=True, default=False)
-  yes_or_no_response = models.BooleanField(blank=True, default=False)
+  def __unicode__(self):
+    return "%s" % (self.question)
 
 
 class SurveyResponse(models.Model):
   survey = models.ForeignKey(Survey)
-  question = models.ForeignKey(SurveyQuestion)
   member = models.ForeignKey(User, null=True)
-  approve = models.BooleanField(blank=True, default=False)
   detail = models.CharField(max_length=2000, blank=True, default=False)
