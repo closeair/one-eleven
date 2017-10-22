@@ -2,11 +2,11 @@
 
 <img src="https://raw.githubusercontent.com/closeair/sundowners-fc/dev/static/img/logo.png" width="100"/>
 
-Suite for the day to day operation of the Sundowners Flight Club, et al.
+Suite for the day to day operation of a Flight Club.
 
 ## What is this?
 
-The sundowners-fc code base was developed as part of the preparation for the Sundowners Flight Club as well as extracted from a solution developed for the Richmond Pilots Corporation, a flight club originally based at Miller Field in Staten Island but later moved to KLDJ when Miller Field was closed in the late 1960s.
+The one-eleven code base was developed for the Richmond Pilots Corporation, a flight club originally based at Miller Field in Staten Island but later moved to KLDJ when Miller Field was closed in the late 1960s.
 
 It leverages the Django Framework to provide mostly the day to day operations of a flight club or school. Specifically, it provides member management, scheduling and management of aircraft as well as invoicing, etc.
 
@@ -62,6 +62,6 @@ If you plan to develop the code base and wish to use TDD, run the test suite wit
 
 
 ## Lineage
-The founder of this project (and the Sundowners Flight Club) was a member of the US naval squadron VF-111 Sundowners (1956-95), as serves as the direct lineage of the Sundowners legacy.
+The founder of this project was a member of the US naval squadron [VF-111](https://en.wikipedia.org/wiki/VF-111_(1956-95)) Sundowners (1956-95).
 
 Illegitimi Non Carborundum.
